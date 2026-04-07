@@ -6,11 +6,11 @@ import logging
 from fastapi import APIRouter, HTTPException, BackgroundTasks
 from fastapi.responses import Response
 
-from ..models.schemas import AnalysisRequest, RewriteRequest, RewriteResponse
-from ..services.ai_detector import analyze_document
-from ..services.humanizer import get_rewrite_suggestion, get_batch_rewrites
-from ..services.report_generator import generate_pdf_report
-from .upload import document_store
+from models.schemas import AnalysisRequest, RewriteRequest, RewriteResponse
+from services.ai_detector import analyze_document
+from services.humanizer import get_rewrite_suggestion, get_batch_rewrites
+from services.report_generator import generate_pdf_report
+from routes.upload import document_store
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/analyze", tags=["analysis"])

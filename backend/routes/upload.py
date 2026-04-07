@@ -10,8 +10,8 @@ from pathlib import Path
 from fastapi import APIRouter, UploadFile, File, HTTPException, BackgroundTasks
 from fastapi.responses import JSONResponse
 
-from ..models.schemas import UploadResponse
-from ..services.text_extractor import extract_text, count_words, detect_sections
+from models.schemas import UploadResponse
+from services.text_extractor import extract_text, count_words, detect_sections
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/upload", tags=["upload"])

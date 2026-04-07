@@ -4,8 +4,8 @@ Provides learning examples and feedback for identifying AI-generated text.
 """
 import logging
 from fastapi import APIRouter, HTTPException
-from ..models.schemas import TrainingAnswer, TrainingResult
-from ..services.ai_detector import get_training_examples, _score_sentence
+from models.schemas import TrainingAnswer, TrainingResult
+from services.ai_detector import get_training_examples, _score_sentence
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/training", tags=["training"])

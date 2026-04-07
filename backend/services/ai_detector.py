@@ -16,6 +16,7 @@ import re
 import time
 import math
 import logging
+import statistics
 from pathlib import Path
 from collections import Counter
 from typing import List, Dict, Tuple, Any, Optional
@@ -71,10 +72,8 @@ def _calculate_burstiness(lengths: List[int]) -> float:
     """
     if len(lengths) < 3:
         return 0.0
-    n = len(lengths)
-    mu = sum(lengths) / n
-    variance = sum((x - mu) ** 2 for x in lengths) / n
-    sigma = math.sqrt(variance)
+    mu = statistics.mean(lengths)
+    sigma = statistics.stdev(lengths)
     if mu + sigma == 0:
         return 0.0
     return (sigma - mu) / (sigma + mu)
@@ -302,7 +301,7 @@ def analyze_document(
     start_time = time.time()
 
     # Import here to avoid circular issues
-    from .text_extractor import split_into_sentences
+    from services.text_extractor import split_into_sentences
 
     sentences_raw = split_into_sentences(text)
     if not sentences_raw:
