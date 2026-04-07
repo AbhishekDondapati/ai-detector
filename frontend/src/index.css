@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  /* Score meter arc */
+  .score-ring {
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+  }
+
+  /* Sentence highlight tokens */
+  .sentence-token {
+    @apply inline cursor-pointer rounded px-0.5 transition-all duration-150;
+  }
+  .sentence-token:hover {
+    @apply brightness-90 shadow-sm;
+  }
+  .sentence-token.red {
+    @apply bg-red-100 text-red-900 border-b-2 border-red-400;
+  }
+  .sentence-token.yellow {
+    @apply bg-amber-100 text-amber-900 border-b-2 border-amber-400;
+  }
+  .sentence-token.green {
+    @apply bg-emerald-50 text-emerald-900;
+  }
+
+  /* Card */
+  .card {
+    @apply bg-white rounded-2xl shadow-sm border border-slate-100 p-6;
+  }
+  .card-sm {
+    @apply bg-white rounded-xl shadow-sm border border-slate-100 p-4;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-brand-500 to-purple-600 bg-clip-text text-transparent;
+  }
+
+  /* Button variants */
+  .btn-primary {
+    @apply bg-brand-500 hover:bg-brand-600 text-white font-semibold px-6 py-2.5 rounded-xl
+           transition-all duration-200 shadow-sm hover:shadow-md active:scale-95 disabled:opacity-50
+           disabled:cursor-not-allowed inline-flex items-center gap-2;
+  }
+  .btn-secondary {
+    @apply bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium px-5 py-2.5 rounded-xl
+           transition-all duration-200 active:scale-95 inline-flex items-center gap-2;
+  }
+  .btn-ghost {
+    @apply hover:bg-slate-100 text-slate-600 font-medium px-4 py-2 rounded-lg
+           transition-colors duration-150 inline-flex items-center gap-2;
+  }
+
+  /* Score badge */
+  .score-badge-red   { @apply bg-red-100 text-red-700 border border-red-200; }
+  .score-badge-yellow { @apply bg-amber-100 text-amber-700 border border-amber-200; }
+  .score-badge-green  { @apply bg-emerald-100 text-emerald-700 border border-emerald-200; }
+
+  /* Tooltip styles */
+  .tooltip-panel {
+    @apply absolute z-50 bg-slate-900 text-white text-sm rounded-xl p-3 shadow-2xl
+           max-w-xs pointer-events-none;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { @apply bg-transparent; }
+::-webkit-scrollbar-thumb { @apply bg-slate-300 rounded-full; }
+::-webkit-scrollbar-thumb:hover { @apply bg-slate-400; }
+
+/* Dropzone animation */
+.dropzone-active {
+  animation: pulse-border 1s ease-in-out infinite;
+}
+@keyframes pulse-border {
+  0%, 100% { border-color: #6366F1; box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.3); }
+  50% { border-color: #4F46E5; box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+}
+
+/* Progress bar animation */
+.progress-bar {
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Training mode card flip */
+.card-flip { perspective: 1000px; }
+.card-flip-inner {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+.card-flip.flipped .card-flip-inner { transform: rotateY(180deg); }
+.card-face { backface-visibility: hidden; }
+.card-back {
+  transform: rotateY(180deg);
+  position: absolute;
+  top: 0; left: 0; right: 0;
+}
