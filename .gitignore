@@ -16,6 +16,8 @@ env/
 node_modules/
 frontend/dist/
 frontend/.env.local
+frontend/.env.production
+frontend/.env
 *.log
 
 # Uploads (user files — never commit)
